@@ -25,7 +25,9 @@ source-repository head
 
 library
   exposed-modules:
+      Behaviour
       Lib
+      Types
   other-modules:
       Paths_Ants
   hs-source-dirs:
