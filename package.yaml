@@ -2,9 +2,9 @@ name:                Ants
 version:             0.1.0.0
 github:              "githubuser/Ants"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2022 Author name here"
+author:              "Mihir Singh"
+maintainer:          "m.singh@se22.qmul.ac.uk"
+copyright:           "2022 Mihir Singh"
 
 extra-source-files:
 - README.md

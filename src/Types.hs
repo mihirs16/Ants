@@ -1,22 +1,26 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Types 
-    ( Message (..),
-    User (..) ) where
+    ( 
+        Message (..),
+        User (..) 
+    ) where
 
 import GHC.Generics ( Generic )
 
 
--- | Message content and sender's details
+-- | Message content, sender's and receiver's details
 data Message = Message {
+    message_id :: Int,
     from :: User,
     content :: String,
     to :: User
-} deriving (Show, Generic)
+} deriving (Show, Read, Generic)
 
 
--- | User details and list of received messages 
+-- | User details
 data User = User {
+    user_id :: Int,
     username :: String
-} deriving (Show, Generic)
+} deriving (Show, Read, Generic)
 

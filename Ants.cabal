@@ -9,9 +9,9 @@ version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/Ants#readme>
 homepage:       https://github.com/githubuser/Ants#readme
 bug-reports:    https://github.com/githubuser/Ants/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2022 Author name here
+author:         Mihir Singh
+maintainer:     m.singh@se22.qmul.ac.uk
+copyright:      2022 Mihir Singh
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -26,7 +26,7 @@ source-repository head
 library
   exposed-modules:
       Behaviour
-      Lib
+      Threads
       Types
   other-modules:
       Paths_Ants

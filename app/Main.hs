@@ -1,15 +1,16 @@
 module Main (main) where
 
-import Behaviour 
-    (
-        birth,
-        constructMessage,
-        sendMessage
-    )
+import System.IO ( hSetBuffering, stdout, BufferMode(NoBuffering) )
+import Behaviour ( birth )
+import Threads ( spawnThreads )
+
 
 main :: IO ()
 main = do
-    let fromUser = birth "mihir_singh"
-    let toUser = birth "alisha_khan"
-    let newMessage = constructMessage "hello world" fromUser toUser
-    sendMessage newMessage
+    hSetBuffering stdout NoBuffering
+
+    -- create 10 users
+    let users = map (birth) [1..10]
+
+    -- spawn threads for all users
+    spawnThreads users
