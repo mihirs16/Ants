@@ -18,9 +18,8 @@ birth userIdToAssign =  User {
 
 
 -- | create a new message
-constructMessage :: Int -> String -> User -> User -> Message
-constructMessage messageIdToAssign messageContent fromUser toUser =  Message {
-        message_id = messageIdToAssign,
+constructMessage :: String -> User -> User -> Message
+constructMessage messageContent fromUser toUser = Message {
         from = fromUser,
         content = messageContent,
         to = toUser

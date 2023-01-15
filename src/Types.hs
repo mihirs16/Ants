@@ -11,7 +11,6 @@ import GHC.Generics ( Generic )
 
 -- | Message content, sender's and receiver's details
 data Message = Message {
-    message_id :: Int,
     from :: User,
     content :: String,
     to :: User
