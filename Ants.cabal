@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Behaviour
+      Stats
       Threads
       Types
   other-modules:
