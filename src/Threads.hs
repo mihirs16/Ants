@@ -17,26 +17,30 @@ import Behaviour ( readMsgsFromTxt, constructMessage, saveToTxt )
 simulatedUser ::  QSem -> QSemN -> [User] -> Int -> IO ()
 simulatedUser mutex endFlags allUsers userId = do
     
-    let user = allUsers !! (userId - 1)                 -- get user for userId
+    let user = allUsers !! (userId - 1)                     -- get user for userId
 
     recvUserId <- randomRIO (1, 10) :: IO Int
-    let recvUser = allUsers !! (recvUserId - 1)         -- select a random user
+    let recvUser = allUsers !! (recvUserId - 1)             -- select a random user
     
-    waitTime <- randomRIO (0, 1) :: IO Float
-    threadDelay $ round (waitTime * 1000000)            -- wait for a random interval  
-
-    let newMessage = constructMessage "ssup my g?" user recvUser 
-
-    waitQSem mutex                                      -- acquire lock 
-    messages <- readMsgsFromTxt "messages.txt"
-    if length messages >= 100 then do
-        signalQSem mutex                                -- release lock
-        signalQSemN endFlags 1                          -- threads complete
+    if userId == recvUserId                                 -- don't send a message to myself 
+        then simulatedUser mutex endFlags allUsers userId 
     else do
-        putStrLn $ "from: " ++ show user ++ "\t | to: " ++ show recvUser
-        saveToTxt newMessage "messages.txt"
-        signalQSem mutex                                -- release lock
-        simulatedUser mutex endFlags allUsers userId    -- repeat this behaviour
+        waitTime <- randomRIO (0, 1) :: IO Float
+        threadDelay $ round (waitTime * 1000000)            -- wait for a random interval  
+
+        let newMessageContent = "this message was sent after " ++ show (waitTime * 1000) ++ " ms"
+        let newMessage = constructMessage newMessageContent user recvUser
+
+        waitQSem mutex                                      -- acquire lock 
+        messages <- readMsgsFromTxt "messages.txt"
+        if length messages >= 100 then do
+            signalQSem mutex                                -- release lock
+            signalQSemN endFlags 1                          -- threads complete
+        else do
+            putStrLn $ "from: " ++ show user ++ "\t | to: " ++ show recvUser ++ "\t | interval: " ++ show (waitTime * 1000) ++ " ms"
+            saveToTxt newMessage "messages.txt"
+            signalQSem mutex                                -- release lock
+            simulatedUser mutex endFlags allUsers userId    -- repeat this behaviour
                     
 
 -- | spawn threads for a given list of users

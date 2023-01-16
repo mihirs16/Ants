@@ -29,6 +29,6 @@ generalStats users = do
     let numOfMessagesSentByUser = getMessagesSentByEachUser messages users
     let numOfMessagesReceivedByUser = getMessagesSentToEachUser messages users
     
-    putStrLn $ "total messages: " ++ show numOfMessages
-    putStrLn $ "messages sent: " ++ show numOfMessagesSentByUser
-    putStrLn $ "messaged received: " ++ show numOfMessagesReceivedByUser
+    putStrLn $ "total messages simulated: " ++ show numOfMessages
+    putStrLn $ "messages sent by each user: " ++ show numOfMessagesSentByUser
+    putStrLn $ "messaged received by each user: " ++ show numOfMessagesReceivedByUser

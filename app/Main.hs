@@ -14,3 +14,4 @@ main = do
     spawnThreads users                      -- spawn threads for all users
 
     generalStats users                      -- stats after completion
+    putStrLn ">> check `messages.txt` for all the messages"
