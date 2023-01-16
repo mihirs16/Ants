@@ -9,8 +9,8 @@ import Control.Concurrent
         waitQSem, waitQSemN,
         QSem, QSemN,
     )
-import Types ( User (..) )
-import Behaviour ( readMsgsFromTxt, constructMessage, saveToTxt ) 
+import Types ( User (..), Message (..) )
+import Behaviour ( readMsgsFromTxt, saveToTxt ) 
 
 
 -- | simulate user behaviour
@@ -29,7 +29,7 @@ simulatedUser mutex endFlags allUsers userId = do
         threadDelay $ round (waitTime * 1000000)            -- wait for a random interval  
 
         let newMessageContent = "this message was sent after " ++ show (waitTime * 1000) ++ " ms"
-        let newMessage = constructMessage newMessageContent user recvUser
+        let newMessage = Message user newMessageContent recvUser
 
         waitQSem mutex                                      -- acquire lock 
         messages <- readMsgsFromTxt "messages.txt"

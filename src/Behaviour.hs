@@ -1,29 +1,10 @@
 module Behaviour 
     ( 
-        birth,
-        constructMessage,
         saveToTxt,
         readMsgsFromTxt,
     ) where
 
-import Types ( Message (..), User (..) )
-
-
--- | create new user
-birth :: Int -> User
-birth userIdToAssign =  User {
-        user_id = userIdToAssign,
-        username = "user_" ++ show userIdToAssign
-    }
-
-
--- | create a new message
-constructMessage :: String -> User -> User -> Message
-constructMessage messageContent fromUser toUser = Message {
-        from = fromUser,
-        content = messageContent,
-        to = toUser
-    }
+import Types ( Message (..) )
 
 
 -- | save record to txt
