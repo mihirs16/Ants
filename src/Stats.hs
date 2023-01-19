@@ -1,7 +1,9 @@
-module Stats ( generalStats ) where
+module Stats ( 
+    generalStats
+) where
 
 import Types ( Message (..), User (..) )
-import Behaviour ( readMsgsFromTxt )
+-- import Behaviour ( readMsgsFromTxt )
 
 -- | get the number of messages sent by each user
 messagesSent :: [Message] -> [User] -> [(String, Int)]
@@ -20,9 +22,9 @@ messagesReceived messages (user:users) =
 
 
 -- | display the general stats like count of messages
-generalStats :: [User] -> IO ()
-generalStats users = do
-    messages <- readMsgsFromTxt "messages.txt"
+generalStats :: [User] -> [Message] -> IO ()
+generalStats users messages = do
+    -- messages <- readMsgsFromTxt "messages.txt"
     let numOfMessages = length messages
     let numOfMessagesSent = messagesSent messages users
     let numOfMessagesReceived = messagesReceived messages users

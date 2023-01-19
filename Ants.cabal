@@ -25,7 +25,6 @@ source-repository head
 
 library
   exposed-modules:
-      Behaviour
       Stats
       Threads
       Types
@@ -37,6 +36,7 @@ library
   build-depends:
       base >=4.7 && <5
     , random
+    , stm
   default-language: Haskell2010
 
 executable Ants-exe
@@ -50,6 +50,7 @@ executable Ants-exe
       Ants
     , base >=4.7 && <5
     , random
+    , stm
   default-language: Haskell2010
 
 test-suite Ants-test
@@ -64,4 +65,5 @@ test-suite Ants-test
       Ants
     , base >=4.7 && <5
     , random
+    , stm
   default-language: Haskell2010
